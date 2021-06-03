@@ -5,8 +5,9 @@ import {
 import { useNavigation } from '@react-navigation/core';
 
 import ASH_HOME from '../../assets/images/Ash_Home.png';
+import colors from '../../../styles/colors';
 
-function StartScreen(){
+const StartScreen = () => {
   const navigation = useNavigation();
 
   function handleStart(){
@@ -41,26 +42,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor:'#cc0000',
+    backgroundColor:colors.dark_red,
     flexDirection:'column',
     justifyContent:'space-between'
   },
   welcome: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 18,
     textAlign: 'center',
     paddingTop:40,
     marginTop:45,
   },
   instructions: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 52,
     textAlign: 'center',
     fontWeight: 'bold',
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     paddingVertical: 10,
     paddingHorizontal: 70,
     borderRadius: 10,
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   textButtonInstructions: {
     fontWeight: 'bold',
     fontSize: 18,
-    color: '#cc0000'
+    color: colors.red,
   }
 });
 
