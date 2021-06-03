@@ -1,10 +1,12 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import 'react-native-gesture-handler';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './routes/stackNavigator'
 
-import StartScreen from '~/pages/StartScreen';
-
-const Routes = createAppContainer(createSwitchNavigator({
-  StartScreen
-
-}));
+const Routes = () => (
+  <NavigationContainer>
+      <StackNavigator />
+  </NavigationContainer>
+)
 
 export default Routes;
