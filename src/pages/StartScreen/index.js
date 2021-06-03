@@ -1,28 +1,40 @@
 import React from 'react';
-
 import {
-   Text, StyleSheet, TouchableOpacity, ImageBackground, StatusBar,
+   Text, StyleSheet, TouchableOpacity, ImageBackground, StatusBar
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+
 import ASH_HOME from '../../assets/images/Ash_Home.png';
 
-const StartScreen = () => (
-  <ImageBackground
-    source={ASH_HOME}
-    style={styles.container}
-    resizeMode="contain"
-  >
-    <StatusBar barStyle="light-content" backgroundColor="#cc0000" />
+function StartScreen(){
+  const navigation = useNavigation();
 
-    <Text style={styles.welcome}>Welcome to</Text>
-    <Text style={styles.instructions}>PokeDesk</Text>
+  function handleStart(){
+    navigation.navigate('HomeScreen');
+  }
 
-    <TouchableOpacity
-         style={styles.button}
-    >
-      <Text style={styles.textButtonInstructions}> Start </Text>
-    </TouchableOpacity>
-  </ImageBackground>
-);
+  return (
+    <>
+      <ImageBackground
+        source={ASH_HOME}
+        style={styles.container}
+        resizeMode="contain"
+      >
+        <StatusBar barStyle="light-content" backgroundColor="#cc0000" />
+
+        <Text style={styles.welcome}>Welcome to</Text>
+        <Text style={styles.instructions}>PokeDesk</Text>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleStart}
+        >
+          <Text style={styles.textButtonInstructions}> Start </Text>
+        </TouchableOpacity>
+      </ImageBackground>
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
