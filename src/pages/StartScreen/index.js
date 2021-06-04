@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor:colors.dark_red,
     flexDirection:'column',
-    justifyContent:'space-between'
+    justifyContent:'space-around'
   },
   welcome: {
     color: colors.white,
