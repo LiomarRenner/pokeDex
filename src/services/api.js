@@ -4,13 +4,14 @@ const api = axios.create({
   baseURL: 'https://pokeapi.co/api/v2',
 });
 
-const getPokemonList = () => {
-  api.get("/pokemon/")
+
+const getPokemon = () => {
+  api.get("/pokemon/1")
   .then((res) => {
-    console.log(res.data.results);
+    console.log( res.data );
   })
   .catch((err) => {
-    console.log("Vixe, Meu padin teve um erro" + err)
+    console.log("Vixe, Meu padin teve um erro no getPokemon" + err)
   })
 }
 
@@ -20,8 +21,8 @@ const getPokemonInfo = () => {
     console.log(res.data.results);
   })
   .catch((err) => {
-    console.log("Vixe, Meu padin teve um erro" + err)
+    console.log("Vixe, Meu padin teve um erro no getPokemonInfo" + err)
   })
 }
 
-export { api, getPokemonList, getPokemonInfo };
+export { api, getPokemon, getPokemonInfo };
