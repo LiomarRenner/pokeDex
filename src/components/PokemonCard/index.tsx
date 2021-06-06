@@ -1,31 +1,54 @@
 import React from 'react';
 import {
-  StyleSheet, Text
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
 } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
-
+import { Pokemon } from '~/interfaces/pokemon';
 import colors from '../../../styles/colors';
 
-const PokemonCard = () => {
+const windowWidth = Dimensions.get('window').width;
+interface Props {
+  pokemon: Pokemon;
+}
+//<Image source={{ uri: item.photo }} style={ styles.image }/>
+const PokemonCard = ({ pokemon } : Props ) => {
     return (
-      <>
-        <RectButton
-          style={styles.container}
-        >
-        </RectButton>
-      </>
+      <TouchableOpacity activeOpacity = { 0.6 }>
+        <View style = {{ ...styles.containerCard }}>
+          <View>
+            <Text style = {styles.name }>
+              {pokemon.name}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    containerCard: {
       flex:1,
-      maxWidth: '45%',
-      backgroundColor: colors.gray,
+      backgroundColor: colors.white,
       borderRadius: 20,
       paddingVertical: 10,
       alignItems: 'center',
-      margin: 10
+      marginHorizontal: 40,
+      marginTop:25,
+      marginBottom:15,
+      height: 80,
+      width: windowWidth * 0.7,
+    },
+    image: {
+      width: 50,
+      height: 50,
+    },
+    name: {
+      color: colors.black,
+      fontSize: 18,
+      top: 15,
     },
 
 })
