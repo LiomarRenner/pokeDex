@@ -33,7 +33,8 @@ const usePokemonPaginated = () => {
   },[])
 
   return {
-    pokemonList
+    pokemonList,
+    getPokemons,
   }
  }
 

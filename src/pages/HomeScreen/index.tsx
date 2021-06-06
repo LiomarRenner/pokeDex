@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ImageBackground, StyleSheet,
+  ImageBackground,
+  StyleSheet,
+  FlatList,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import { api } from '../../services/api';
 import POKEBALL from '../../assets/images/Pokeball.png';
 import PokemonCard from '../../components/PokemonCard';
 import colors from '../../../styles/colors';
@@ -12,7 +14,7 @@ import { usePokemonPaginated } from '~/hooks/usePokemonPaginated';
 
 const HomeScreen = () => {
 
-  usePokemonPaginated();
+  const { pokemonList, getPokemons } = usePokemonPaginated();
 
   const navigation = useNavigation();
 
@@ -29,6 +31,16 @@ const HomeScreen = () => {
         resizeMode="cover"
       >
       </ImageBackground>
+
+      <FlatList
+        data = { pokemonList }
+        keyExtractor = { (pokemon) => pokemon.id}
+        renderItem = { ({ item }) => ( <Image source={{ uri: item.photo }} style={ styles.image }/> )}
+        numColumns={ 1 }
+
+        onEndReached = { getPokemons }
+        onEndReachedThreshold = { 0.5 }
+      />
     </>
   );
 }
@@ -41,6 +53,10 @@ const styles = StyleSheet.create({
   },
   containerCard: {
 
+  },
+  image: {
+    width: 50,
+    height: 50,
   }
 
 })
