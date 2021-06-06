@@ -24,7 +24,7 @@ const StartScreen = () => {
         <StatusBar barStyle="light-content" backgroundColor="#cc0000" />
 
         <Text style={styles.welcome}>Welcome to</Text>
-        <Text style={styles.instructions}>PokeDesk</Text>
+        <Text style={styles.instructions}>PokeDex</Text>
 
         <TouchableOpacity
           style={styles.button}

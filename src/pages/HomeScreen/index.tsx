@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ImageBackground, StyleSheet, FlatList, ScrollView, ActivityIndicator
+  ImageBackground, StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
@@ -8,9 +8,11 @@ import { api } from '../../services/api';
 import POKEBALL from '../../assets/images/Pokeball.png';
 import PokemonCard from '../../components/PokemonCard';
 import colors from '../../../styles/colors';
+import { usePokemonPaginated } from '~/hooks/usePokemonPaginated';
 
 const HomeScreen = () => {
-  const { pokemon, setPokemon } = useState([]);
+
+  usePokemonPaginated();
 
   const navigation = useNavigation();
 
@@ -18,35 +20,16 @@ const HomeScreen = () => {
     navigation.navigate('InfoPokeScreen');
   }
 
-  const getPokemonList = () => {
-    api.get("/pokemon/")
-    .then((res) => {
-      console.log( res.data.results );
-    })
-    .catch((err) => {
-      console.log("Vixe, Meu padin teve um erro no getPokemonList" + err)
-    })
-  }
 
-  useEffect(() => {
-    getPokemonList();
-  }, []);
-
-  return(
+  return (
+    <>
       <ImageBackground
         source={POKEBALL}
         style={styles.containerImage}
         resizeMode="cover"
       >
-        <PokemonCard
-          onPress={() => handlePokeInfo()}
-          style={styles.containerCard}
-        />
-        <PokemonCard
-          onPress={() => handlePokeInfo()}
-          style={styles.containerCard}
-        />
       </ImageBackground>
+    </>
   );
 }
 
