@@ -21,7 +21,7 @@ const PokemonCard = ({ pokemon } : Props ) => {
   const navigation = useNavigation();
 
   function handlePokeInfo(){
-    navigation.navigate('InfoPokeScreen');
+    navigation.navigate('InfoPokeScreen', { pokemon: pokemon });
   }
     return (
       <TouchableOpacity
