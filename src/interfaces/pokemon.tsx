@@ -11,7 +11,7 @@ export interface Result {
   url: string;
 }
 
-export interface OnePokemon {
+export interface Pokemon {
   name: string;
   id: string;
   photo: string;

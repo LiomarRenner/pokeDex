@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { OnePokemon, PokemonPaginated, Result } from '~/interfaces/pokemon';
+import { Pokemon, PokemonPaginated, Result } from '~/interfaces/pokemon';
 import { api } from '../services/api'
 
 const usePokemonPaginated = () => {
 
-  const [pokemonList, setPokemonList] = useState<OnePokemon[]>([]);
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const NEXT_URL = useRef('/pokemon?limit=20');
 
   const getPokemons = async() => {
@@ -13,8 +13,19 @@ const usePokemonPaginated = () => {
     mapPokemonListToPokemon(res.data.results);
   }
 
-  const mapPokemonListToPokemon = (pokemonList: Result[]) => {
-    pokemonList.forEach( pokemon => console.log(pokemon.name))
+  const mapPokemonListToPokemon = (pokemon: Result[]) => {
+    const newPokemonList: Pokemon[] = pokemon.map(({ name, url }) => {
+      const urlPieces = url.split('/');
+      const id = urlPieces[ urlPieces.length - 2];
+      const photo = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ id }.png`;
+
+      return {
+        id,
+        name,
+        photo,
+      };
+    });
+    setPokemonList([ ...pokemonList, ...newPokemonList]);
   }
 
   useEffect(() => {
@@ -22,7 +33,7 @@ const usePokemonPaginated = () => {
   },[])
 
   return {
-
+    pokemonList
   }
  }
 
