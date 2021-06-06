@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {
   Dimensions,
@@ -5,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Image,
 } from 'react-native';
 import { Pokemon } from '~/interfaces/pokemon';
 import colors from '../../../styles/colors';
@@ -13,16 +15,25 @@ const windowWidth = Dimensions.get('window').width;
 interface Props {
   pokemon: Pokemon;
 }
-//<Image source={{ uri: item.photo }} style={ styles.image }/>
+
 const PokemonCard = ({ pokemon } : Props ) => {
+
+  const navigation = useNavigation();
+
+  function handlePokeInfo(){
+    navigation.navigate('InfoPokeScreen');
+  }
     return (
-      <TouchableOpacity activeOpacity = { 0.6 }>
+      <TouchableOpacity
+        activeOpacity = { 0.6 }
+        onPress={handlePokeInfo}
+      >
         <View style = {{ ...styles.containerCard }}>
-          <View>
-            <Text style = {styles.name }>
-              {pokemon.name}
-            </Text>
-          </View>
+          <Text style = {styles.name }>
+            {'#00' + pokemon.id}
+            <Image source={{ uri: pokemon.photo }} style={ styles.image }/>
+            {'  ' + pokemon.name}
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -30,13 +41,9 @@ const PokemonCard = ({ pokemon } : Props ) => {
 
 const styles = StyleSheet.create({
     containerCard: {
-      flex:1,
       backgroundColor: colors.white,
       borderRadius: 20,
-      paddingVertical: 10,
-      alignItems: 'center',
       marginHorizontal: 40,
-      marginTop:25,
       marginBottom:15,
       height: 80,
       width: windowWidth * 0.7,
@@ -48,7 +55,8 @@ const styles = StyleSheet.create({
     name: {
       color: colors.black,
       fontSize: 18,
-      top: 15,
+      left: 25,
+      paddingBottom: 20,
     },
 
 })
