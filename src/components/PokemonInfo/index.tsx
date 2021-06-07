@@ -3,31 +3,26 @@ import {
   View,
   Text,
   StyleSheet,
+  ScrollView,
+  Image,
 } from 'react-native';
+//import { PokemonFull } from '../../interfaces/pokemon';
+//import colors from '../../../styles/colors';
 
-import colors from '../../../styles/colors';
 
 const PokemonInfo = () => {
   return (
-    <View>
-    </View>
+    <ScrollView style={styles.scrollView}>
+
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  pokemonName: {
-    color: colors.white,
-    fontSize: 22,
-    fontWeight:'bold',
-    //alignSelf: 'flex-start',
-    left: 20
-  },
-  pokemonDescription: {
-    color: colors.white,
-    fontSize: 18,
-    left: 20,
-  },
-
+  scrollView: {
+    ...StyleSheet.absoluteFillObject,
+    //backgroundColor: colors.black,
+  }
 })
 
 export default PokemonInfo;

@@ -6,7 +6,7 @@ import {
   Image
 } from 'react-native';
 
-import { useNavigation } from '@react-navigation/core';
+//import { useNavigation } from '@react-navigation/core';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '~/routes/stackNavigator';
 import ImageColors from 'react-native-image-colors';
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 16,
     left: 20,
-    marginRight:20,
   },
 
 })
