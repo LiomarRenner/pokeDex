@@ -6,7 +6,7 @@ export const usePokemonFull = ( id: string ) => {
   const [ pokemonFull, setPokemonFull ] = useState<PokemonFull>({} as PokemonFull);
 
   const loadPokemonFull = async() => {
-    const res = await api.get<PokemonFull>(`/pokemon/1`);
+    const res = await api.get<PokemonFull>(`/pokemon/${ id }`);
     setPokemonFull( res.data );
   }
 
