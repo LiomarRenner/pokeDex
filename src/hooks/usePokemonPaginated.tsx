@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Pokemon, PokemonPaginated, Result } from '~/interfaces/pokemon';
+import { Pokemon, PokemonPaginated, Result } from '../interfaces/pokemon';
 import { api } from '../services/api'
 
 const usePokemonPaginated = () => {
