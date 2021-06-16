@@ -19,7 +19,7 @@ interface Props extends StackScreenProps<RootStackParams ,'InfoPokeScreen'>{};
 
 const InfoPokeScreen = ({ navigation, route}: Props ) => {
   const { pokemon } = route.params;
-  //const { id, name, photo } = pokemon;
+  const { id, name, photo } = pokemon;
   const [ bkgroundColor, setBkgroundColor ] = useState('white');
   const isMounted = useRef(true);
 
@@ -28,7 +28,7 @@ const InfoPokeScreen = ({ navigation, route}: Props ) => {
 
   useEffect(() => {
 
-    ImageColors.getColors( pokemon.photo, { fallback: 'white' })
+    ImageColors.getColors( photo, { fallback: 'white' })
         .then( (colors: any) => {
 
           if ( !isMounted.current ) return;
@@ -47,10 +47,10 @@ const InfoPokeScreen = ({ navigation, route}: Props ) => {
   return(
     <>
       <View style={{...styles.headContainer, backgroundColor: bkgroundColor}}>
-        <Image source={{ uri: pokemon.photo }} style={ styles.image }/>
+        <Image source={{ uri: photo }} style={ styles.image }/>
       </View>
       <View style={styles.bodyContainer}>
-        <Text style={styles.pokemonName}>{pokemon.name }#00{pokemon.id}</Text>
+        <Text style={styles.pokemonName}>{name }#00{id}</Text>
         <PokemonInfo />
       </View>
     </>
