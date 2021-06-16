@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { PokemonFull } from '../interfaces/pokemon';
 
-export const usePokemon = ( id: string ) => {
-  const [ pokemon, setPokemon ] = useState<PokemonFull>({} as PokemonFull);
+export const usePokemonFull = ( id: string ) => {
+  const [ pokemonFull, setPokemonFull ] = useState<PokemonFull>({} as PokemonFull);
 
   const loadPokemonFull = async() => {
     const res = await api.get<PokemonFull>(`/pokemon/1`);
-    setPokemon( res.data );
+    setPokemonFull( res.data );
   }
 
   useEffect(() => {
@@ -15,6 +15,6 @@ export const usePokemon = ( id: string ) => {
   }, [])
 
   return {
-    pokemon
+    pokemonFull
   }
 }

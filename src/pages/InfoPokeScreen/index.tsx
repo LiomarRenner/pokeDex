@@ -12,6 +12,7 @@ import { RootStackParams } from '../../routes/stackNavigator';
 import ImageColors from 'react-native-image-colors';
 import colors from '../../../styles/colors';
 import PokemonInfo from '../../components/PokemonInfo';
+import { usePokemonFull } from '../../hooks/usePokemonFull';
 
 
 interface Props extends StackScreenProps<RootStackParams ,'InfoPokeScreen'>{};
@@ -21,6 +22,8 @@ const InfoPokeScreen = ({navigation, route}: Props ) => {
   const { id, name, photo } = pokemon;
   const [ bkgroundColor, setBkgroundColor ] = useState('white');
   const isMounted = useRef(true);
+
+  const { pokemonFull } = usePokemonFull( id )
 
   useEffect(() => {
 
@@ -47,7 +50,6 @@ const InfoPokeScreen = ({navigation, route}: Props ) => {
       </View>
       <View style={styles.bodyContainer}>
         <Text style={styles.pokemonName}>{name }#00{id}</Text>
-        <Text style={styles.pokemonDescription}>Pokemon Description Loren ipsum dolum izi ixi mlia oh dio</Text>
         <PokemonInfo />
       </View>
     </>
@@ -79,12 +81,6 @@ const styles = StyleSheet.create({
 
     margin: 25,
   },
-  pokemonDescription: {
-    color: colors.white,
-    fontSize: 16,
-    left: 20,
-  },
-
 })
 
 export default InfoPokeScreen;
