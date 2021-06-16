@@ -8,10 +8,10 @@ import {
 
 //import { useNavigation } from '@react-navigation/core';
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParams } from '~/routes/stackNavigator';
+import { RootStackParams } from '../../routes/stackNavigator';
 import ImageColors from 'react-native-image-colors';
 import colors from '../../../styles/colors';
-import PokemonInfo from '~/components/PokemonInfo';
+import PokemonInfo from '../../components/PokemonInfo';
 
 
 interface Props extends StackScreenProps<RootStackParams ,'InfoPokeScreen'>{};
@@ -30,7 +30,7 @@ const InfoPokeScreen = ({navigation, route}: Props ) => {
           if ( !isMounted.current ) return;
 
           ( colors.platform === 'android' )
-            ? setBkgroundColor( colors.lightVibrant || 'white' )
+            ? setBkgroundColor( colors.vibrant || 'white' )
             : setBkgroundColor( colors.background || 'white' )
         });
 
@@ -58,10 +58,13 @@ const styles = StyleSheet.create({
   headContainer: {
     flex:1,
     alignItems:'center',
+    zIndex: 990,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 220,
+    height: 220,
+    bottom: -35,
+    position:'absolute',
   },
   bodyContainer: {
     flex:2,
