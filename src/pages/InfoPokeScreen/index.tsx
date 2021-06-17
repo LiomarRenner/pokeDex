@@ -13,6 +13,7 @@ import { RootStackParams } from '../../routes/stackNavigator';
 import ImageColors from 'react-native-image-colors';
 import colors from '../../../styles/colors';
 import  PokemonInfo from '../../components/PokemonInfo';
+import { usePokemonFull } from '../../hooks/usePokemonFull';
 
 
 interface Props extends StackScreenProps<RootStackParams ,'InfoPokeScreen'>{};
@@ -20,11 +21,12 @@ interface Props extends StackScreenProps<RootStackParams ,'InfoPokeScreen'>{};
 const InfoPokeScreen = ({ navigation, route}: Props ) => {
   const { pokemon } = route.params;
   const { id, name, photo } = pokemon;
+
   const [ bkgroundColor, setBkgroundColor ] = useState('white');
   const isMounted = useRef(true);
 
-  //const { pokemonFull } = usePokemonFull( id );
-  //console.log(pokemonFull);
+  const { pokemonFull } = usePokemonFull( id )
+  console.log(pokemonFull);
 
   useEffect(() => {
 
@@ -45,19 +47,22 @@ const InfoPokeScreen = ({ navigation, route}: Props ) => {
   }, []);
 
   return(
-    <>
+    <View style={styles.container}>
       <View style={{...styles.headContainer, backgroundColor: bkgroundColor}}>
         <Image source={{ uri: photo }} style={ styles.image }/>
       </View>
       <View style={styles.bodyContainer}>
         <Text style={styles.pokemonName}>{name }#00{id}</Text>
-        <PokemonInfo />
+        <PokemonInfo pokemon={ pokemonFull }/>
       </View>
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1
+  },
   headContainer: {
     flex:1,
     alignItems:'center',

@@ -7,7 +7,6 @@ import {
 
 import POKEBALL from '../../assets/images/Pokeball.png';
 import PokemonCard from '../../components/PokemonCard';
-import colors from '../../../styles/colors';
 import { usePokemonPaginated } from '../../hooks/usePokemonPaginated';
 
 const HomeScreen = () => {
