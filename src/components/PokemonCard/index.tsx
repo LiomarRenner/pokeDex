@@ -8,7 +8,7 @@ import {
   Text,
   Image,
 } from 'react-native';
-import { Pokemon } from '~/interfaces/pokemon';
+import { Pokemon } from '../../interfaces/pokemon';
 import colors from '../../../styles/colors';
 
 const windowWidth = Dimensions.get('window').width;

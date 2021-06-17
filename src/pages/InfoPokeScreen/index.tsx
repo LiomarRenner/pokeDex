@@ -8,29 +8,35 @@ import {
 
 //import { useNavigation } from '@react-navigation/core';
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParams } from '~/routes/stackNavigator';
+import { RootStackParams } from '../../routes/stackNavigator';
+
 import ImageColors from 'react-native-image-colors';
 import colors from '../../../styles/colors';
-import PokemonInfo from '~/components/PokemonInfo';
+import  PokemonInfo from '../../components/PokemonInfo';
+import { usePokemonFull } from '../../hooks/usePokemonFull';
 
 
 interface Props extends StackScreenProps<RootStackParams ,'InfoPokeScreen'>{};
 
-const InfoPokeScreen = ({navigation, route}: Props ) => {
+const InfoPokeScreen = ({ navigation, route}: Props ) => {
   const { pokemon } = route.params;
   const { id, name, photo } = pokemon;
+
   const [ bkgroundColor, setBkgroundColor ] = useState('white');
   const isMounted = useRef(true);
 
+  const { pokemonFull } = usePokemonFull( id )
+  console.log(pokemonFull);
+
   useEffect(() => {
 
-    ImageColors.getColors( pokemon.photo, { fallback: 'white' })
+    ImageColors.getColors( photo, { fallback: 'white' })
         .then( (colors: any) => {
 
           if ( !isMounted.current ) return;
 
           ( colors.platform === 'android' )
-            ? setBkgroundColor( colors.lightVibrant || 'white' )
+            ? setBkgroundColor( colors.vibrant || 'white' )
             : setBkgroundColor( colors.background || 'white' )
         });
 
@@ -41,27 +47,32 @@ const InfoPokeScreen = ({navigation, route}: Props ) => {
   }, []);
 
   return(
-    <>
+    <View style={styles.container}>
       <View style={{...styles.headContainer, backgroundColor: bkgroundColor}}>
-        <Image source={{ uri: pokemon.photo }} style={ styles.image }/>
+        <Image source={{ uri: photo }} style={ styles.image }/>
       </View>
       <View style={styles.bodyContainer}>
         <Text style={styles.pokemonName}>{name }#00{id}</Text>
-        <Text style={styles.pokemonDescription}>Pokemon Description Loren ipsum dolum izi ixi mlia oh dio</Text>
-        <PokemonInfo />
+        <PokemonInfo pokemon={ pokemonFull }/>
       </View>
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1
+  },
   headContainer: {
     flex:1,
     alignItems:'center',
+    zIndex: 990,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 220,
+    height: 220,
+    bottom: -35,
+    position:'absolute',
   },
   bodyContainer: {
     flex:2,
@@ -76,12 +87,6 @@ const styles = StyleSheet.create({
 
     margin: 25,
   },
-  pokemonDescription: {
-    color: colors.white,
-    fontSize: 16,
-    left: 20,
-  },
-
 })
 
 export default InfoPokeScreen;
